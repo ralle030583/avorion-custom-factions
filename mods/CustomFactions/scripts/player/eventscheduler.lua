@@ -6,7 +6,7 @@ require ("randomext")
 require ("utility")
 
 --For EXTERNAL configuration files
-package.path = package.path .. ";mods/MoveUI/config/?.lua"
+package.path = package.path .. ";mods/CustomFactions/config/?.lua"
 MoveUIConfig = nil
 exsist, CustomFactionsConfig = pcall(require, 'CustomFactionsConfig')
 
