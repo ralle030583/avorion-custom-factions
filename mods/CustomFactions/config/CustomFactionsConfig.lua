@@ -1,8 +1,22 @@
 local CustomFactionsConfig = {}
-CustomFactionsConfig.Author = "Ralle030583"
-CustomFactionsConfig.version = "[0.0.3]"
-CustomFactionsConfig.ModName = "[CustomFactions]"
-CustomFactionsConfig.pauseTime = 10 -- Pausetime after events in minutes
+CustomFactionsConfig.name = "CustomFactions"
+CustomFactionsConfig.author = "Ralle030583"
+CustomFactionsConfig.version = {
+    major=0, minor=0, patch = 3,
+    string = function()
+        return  Config.version.major .. '.' ..
+                Config.version.minor .. '.' ..
+                Config.version.patch
+    end
+}
+
+CustomFactionsConfig.dependencies = {
+    basegame = {major=0, minor=14, patch=2},
+    mods = {}
+}
+
+-- Pausetime after events in minutes
+CustomFactionsConfig.pauseTime = 10
 
 -- Shipclasses according to vanilla shiputility
 CustomFactionsConfig.CLASS.MILITARY.SCOUT = 0
