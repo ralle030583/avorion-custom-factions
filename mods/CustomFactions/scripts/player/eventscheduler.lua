@@ -1,11 +1,5 @@
 --For EXTERNAL configuration files
-package.path = package.path .. ";mods/CustomFactions/config/?.lua"
-CustomFactionsConfig = nil
-exsist, CustomFactionsConfig = pcall(require, 'CustomFactionsConfig')
-
--- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
--- namespace EventScheduler
-EventScheduler = {}
+exsist, CustomFactionsConfig = pcall(require, 'mods/CustomFactions/config/CustomFactionsConfig')
 
 function EventSheduler.addCustomEvents(events)
   if exsists then
