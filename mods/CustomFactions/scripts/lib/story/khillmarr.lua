@@ -51,7 +51,6 @@ function Khillmarr.createShip(position, shipSize)
     end
 
     local faction = Khillmarr.getFaction()
-    --local plan = PlanGenerator.makeShipPlan(faction, volume, nil, material)
 
 	-- assign Different Blueprint according to size, pherhaps later with
   -- real volume volume and blueprints are in the config
