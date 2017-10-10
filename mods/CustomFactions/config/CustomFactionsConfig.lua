@@ -49,7 +49,7 @@ CustomFactionsConfig.ships["Khillmarr"][CustomFactionsConfig.CLASS.MILITARY.DEST
 CustomFactionsConfig.ships["ExampleFaction"][CustomFactionsConfig.CLASS.MILITARY.FRIGATE] =
     { {title = "Example Frigatte A" , plan = "mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml", scale = 1.0},
       {title = "Example Frigatte B" , plan = "mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml", scale = 1.0},
-      {title = "Example Frigatte C" , plan = "mods/CustomFactions/plans/khillmarr/KhilälmarrDaggerCorvette_1.xml", scale = 1.0}
+      {title = "Example Frigatte C" , plan = "mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml", scale = 1.0}
   }
 
 -- Custom events, currently only attacks with Faction and then shipcompositon
