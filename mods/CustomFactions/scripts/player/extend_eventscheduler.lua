@@ -1,10 +1,3 @@
-if onServer() then
-
-package.path = package.path .. ";data/scripts/lib/?.lua"
-
-require ("randomext")
-require ("utility")
-
 --For EXTERNAL configuration files
 package.path = package.path .. ";mods/CustomFactions/config/?.lua"
 CustomFactionsConfig = nil
