@@ -38,4 +38,38 @@ CustomFactionsConfig.ships["ExampleFaction"][CustomFactionsConfig.CLASS.MILITARY
       {title = "Example Frigatte C" , plan = "mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml", scale = 1.0}
   }
 
+-- Custom events, currently only attacks with Faction and then shipcompositon
+customEvents = {
+  {schedule = random():getInt(25, 50) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
+    arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
+                               CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
+                               CustomFactionsConfig.CLASS.MILITARY.SENTINEL}},
+    minimum = 5 * 60, from = 0, to = 500},
+  {schedule = random():getInt(35, 70) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
+    arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
+                               CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                               CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                               CustomFactionsConfig.CLASS.MILITARY.SENTINEL}},
+    minimum = 25 * 60, to = 500},
+  {schedule = random():getInt(60, 80) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
+   arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
+                              CustomFactionsConfig.CLASS.MILITARY.HUNTER,
+                              CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                              CustomFactionsConfig.CLASS.MILITARY.CRUISER,
+                              CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                              CustomFactionsConfig.CLASS.MILITARY.HUNTER,
+                              CustomFactionsConfig.CLASS.MILITARY.SENTINEL}},
+   minimum = 60 * 60, to = 350},
+  {schedule = random():getInt(80, 120) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
+  arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
+                             CustomFactionsConfig.CLASS.MILITARY.HUNTER,
+                             CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                             CustomFactionsConfig.CLASS.MILITARY.CRUISER,
+                             CustomFactionsConfig.CLASS.MILITARY.DESTROYER,
+                             CustomFactionsConfig.CLASS.MILITARY.CRUISER,
+                             CustomFactionsConfig.CLASS.MILITARY.FRIGATTE,
+                             CustomFactionsConfig.CLASS.MILITARY.HUNTER,
+                             CustomFactionsConfig.CLASS.MILITARY.SENTINEL}},
+   minimum = 120 * 60, to = 300},
+}
 return CustomFactionsConfig
