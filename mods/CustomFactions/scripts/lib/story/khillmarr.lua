@@ -58,19 +58,19 @@ function Khillmarr.createShip(position, shipSize)
 	local title = "ship"
 
 	if volume == 1 then
-	    plan = LoadPlanFromFile("data/plans/khillmarr/KhillmarrDaggerCorvette_1.xml")
+	  plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml")
 		title = "Khillmarr Dagger Corvette"
 	elseif volume == 2 then
-		plan = LoadPlanFromFile("data/plans/khillmarr/KhillmarrLightDestroyer_2.xml")
+		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightDestroyer_2.xml")
 		title = "Khillmarr Light Destroyer"
 	elseif 	volume == 3 then
-		plan = LoadPlanFromFile("data/plans/khillmarr/KhillmarrLightCruiserPride_3.xml")
+		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightCruiserPride_3.xml")
 		title = "Khillmarr Light Cruiser"
 	elseif 	volume == 4 then
-		plan = LoadPlanFromFile("data/plans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
+		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
 		title = "Khillmarr Light Cruiser MK II"
 	elseif 	volume == 5 then
-		plan = LoadPlanFromFile("data/plans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
+		plan = LoadPlanFromFile("mods/CustomFactionsplans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
 		title = "Khillmarr Cruiser"
 		s = 1.5
 	end
@@ -96,8 +96,7 @@ function Khillmarr.createShip(position, shipSize)
     AddDefaultShipScripts(ship)
 
     ship:addScript("ai/patrol.lua")
-    ship:addScript("story/khillmarrbehaviour.lua")
-    ship:setValue("is_Khillmarr", 1)
+    ship:addScript("mods/CustomFactions/scripts/entity/story/khillmarrbehaviour.lua")
 
     return ship
 end

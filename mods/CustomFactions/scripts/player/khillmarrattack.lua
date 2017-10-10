@@ -6,7 +6,7 @@ package.path = package.path .. ";data/scripts/?.lua"
 require ("stringutility")
 require ("galaxy")
 local ShipGenerator = require ("shipgenerator")
-local Khillmarr = require("story/Khillmarr")
+local Khillmarr = require("story/Khillmarr.lua")
 
 local minute = 0
 local attackType = 1
@@ -101,7 +101,6 @@ function update(timeStep)
         elseif minute == 4 then
             Player():sendChatMessage("Server"%_t, 3, "The subspace signals are getting too strong for your scanners. Brace yourself!"%_t)
         elseif minute == 5 then
-
             createEnemies({
                   {size=1, title="Small Khillmarr Ship"%_t},
                   {size=1, title="Small Khillmarr Ship"%_t},
