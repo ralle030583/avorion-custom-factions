@@ -6,22 +6,22 @@ package.path = package.path .. ";data/scripts/?.lua"
 require ("stringutility")
 require ("galaxy")
 local ShipGenerator = require ("shipgenerator")
-local Khillmarr = require("story/Khillmarr.lua")
+local CustomFaction = require("mods/scripts/lib/story/CustomFaction.lua")
 
 local minute = 0
 local attackType = 1
 
-function initialize(attackType_in)
+function initialize(faction, attackType_in)
     attackType = attackType_in or 1
     deferredCallback(1.0, "update", 1.0)
 
     if Sector():getValue("neutral_zone") then
-        print ("No Khillmarr attacks in neutral zones.")
+        print ("No Custom attacks in neutral zones.")
         terminate()
         return
     end
 
-    local first = Sector():getEntitiesByFaction(Khillmarr.getFaction().index)
+    local first = Sector():getEntitiesByFaction(CustomFaction.getFaction(faction).index)
     if first then
         terminate()
         return
@@ -124,9 +124,9 @@ function update(timeStep)
 end
 
 
-function createEnemies(volumes)
+function createEnemies(faction, volumes)
 
-    local first = Sector():getEntitiesByFaction(Khillmarr.getFaction().index)
+    local first = Sector():getEntitiesByFaction(CustomFaction.getFaction(faction).index)
     if first then
         terminate()
         return
@@ -134,7 +134,7 @@ function createEnemies(volumes)
 
     local galaxy = Galaxy()
 
-    local faction = Khillmarr.getFaction()
+    local faction = CustomFaction.getFaction(faction)
 
     local player = Player()
     local others = Galaxy():getNearestFaction(Sector():getCoordinates())
@@ -149,7 +149,7 @@ function createEnemies(volumes)
 
     for _, p in pairs(volumes) do
 
-        local enemy = Khillmarr.createShip(MatrixLookUpPosition(-dir, up, pos), p.size)
+        local enemy = CustomFaction.createShip(MatrixLookUpPosition(-dir, up, pos), faction, p.size)
         enemy.title = p.title
 
         local distance = enemy:getBoundingSphere().radius + 20

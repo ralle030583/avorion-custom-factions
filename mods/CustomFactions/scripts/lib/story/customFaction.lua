@@ -11,12 +11,12 @@ local TurretGenerator = require ("turretgenerator")
 local UpgradeGenerator = require ("upgradegenerator")
 local ShipUtility = require ("shiputility")
 local PlanGenerator = require ("plangenerator")
+local configExsists, CustomFactionsConfig = pcall(require, 'mods/CustomFactions/config/CustomFactionsConfig')
 
+local CustomFaction = {}
 
-local Khillmarr = {}
-
-function Khillmarr.getFaction()
-    local name = "The Khillmarr Pirates"%_T
+function CustomFaction.getFaction(factionName)
+    local name = factionName
 
     local galaxy = Galaxy()
     local faction = galaxy:findFaction(name)
@@ -34,7 +34,7 @@ function Khillmarr.getFaction()
     return faction
 end
 
-function Khillmarr.createShip(position, shipSize)
+function CustomFaction.createShip(position, factionName, shipSize)
     position = position or Matrix()
     local volume = Balancing_GetSectorShipVolume(Sector():getCoordinates())
 
@@ -50,32 +50,20 @@ function Khillmarr.createShip(position, shipSize)
           material.value = 5
     end
 
-    local faction = Khillmarr.getFaction()
+    local faction = CustomFaction.getFaction()
 
-	-- assign Different Blueprint according to size, pherhaps later with
-  -- real volume volume and blueprints are in the config
-	local s = 1.0
-	local title = "ship"
+  	-- assign Different Blueprint according to size, pherhaps later with
+    -- real volume volume and blueprints are in the config
+  	local s = 1.0
+  	local title = "noValidTitle"
 
-	if volume == 1 then
-	  plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml")
-		title = "Khillmarr Dagger Corvette"
-	elseif volume == 2 then
-		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightDestroyer_2.xml")
-		title = "Khillmarr Light Destroyer"
-	elseif 	volume == 3 then
-		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightCruiserPride_3.xml")
-		title = "Khillmarr Light Cruiser"
-	elseif 	volume == 4 then
-		plan = LoadPlanFromFile("mods/CustomFactions/plans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
-		title = "Khillmarr Light Cruiser MK II"
-	elseif 	volume == 5 then
-		plan = LoadPlanFromFile("mods/CustomFactionsplans/khillmarr/KhillmarrLightCruiserMK2_4_5.xml")
-		title = "Khillmarr Cruiser"
-		s = 1.5
-	end
+    -- TODO check if there is a blueprint for that factionl, for now i hope ppl havent errors in config
+    xmlFile = CustomFactionsConfig.ships[factionName][shipSize][0].plan
+    title = CustomFactionsConfig.ships[factionName][shipSize][0].title
+  	s = CustomFactionsConfig.ships[factionName][shipSize][0].scale
 
-	plan:scale(vec3(s, s, s))
+    plan = LoadPlanFromFile(xmlFile)
+  	plan:scale(vec3(s, s, s))
 
     if material.value > 0 then
       plan:setMaterial(Material(material.value-1))
@@ -83,7 +71,7 @@ function Khillmarr.createShip(position, shipSize)
     plan:setMaterial(material)
     local ship = Sector():createShip(faction, "", plan, position)
 
-    -- Khillmarr have random turrets, but a bit more then Xsotan (*0.75 => * 1)
+    -- CustomFaction have random turrets, but a bit more then Xsotan (*0.75 => * 1)
     TurretGenerator.initialize(random():createSeed())
     local turret = TurretGenerator.generateArmed(x, y)
     local numTurrets = math.max(2, Balancing_GetEnemySectorTurrets(x, y) * 1) -- *.75 => * 1
@@ -96,9 +84,9 @@ function Khillmarr.createShip(position, shipSize)
     AddDefaultShipScripts(ship)
 
     ship:addScript("ai/patrol.lua")
-    ship:addScript("mods/CustomFactions/scripts/entity/story/khillmarrbehaviour.lua")
+    ship:addScript("mods/CustomFactions/scripts/entity/story/customFactionBehaviour.lua")
 
     return ship
 end
 
-return Khillmarr
+return CustomFaction
