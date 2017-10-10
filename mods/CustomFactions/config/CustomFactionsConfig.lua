@@ -39,7 +39,7 @@ CustomFactionsConfig.ships["ExampleFaction"][CustomFactionsConfig.CLASS.MILITARY
   }
 
 -- Custom events, currently only attacks with Faction and then shipcompositon
-customEvents = {
+CustomFactionsConfig.customEvents = {
   {schedule = random():getInt(25, 50) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
     arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
                                CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
