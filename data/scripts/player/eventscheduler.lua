@@ -12,17 +12,13 @@ local events =
     {schedule = random():getInt(60, 80) * 60, script = "pirateattackstarter", to = 560},
     {schedule = random():getInt(60, 80) * 60, script = "traderattackedbypiratesstarter", to = 560},
     {schedule = random():getInt(25, 50) * 60, script = "alienattack", arguments = {0}, minimum = 5 * 60, from = 0, to = 500},
-    {schedule = random():getInt(5, 10) * 60, script = "khillmarrattack", arguments = {0}, minimum = 5 * 60, from = 0, to = 500},
     {schedule = random():getInt(35, 70) * 60, script = "alienattack", arguments = {1}, minimum = 25 * 60, to = 500},
-    {schedule = random():getInt(35, 70) * 60, script = "khillmarrattack", arguments = {1}, minimum = 25 * 60, to = 500},
     {schedule = random():getInt(60, 80) * 60, script = "alienattack", arguments = {2}, minimum = 60 * 60, to = 350},
-    {schedule = random():getInt(60, 80) * 60, script = "khillmarrattack", arguments = {2}, minimum = 60 * 60, to = 350},
     {schedule = random():getInt(80, 120) * 60, script = "alienattack", arguments = {3}, minimum = 120 * 60, to = 300},
-    {schedule = random():getInt(80, 120) * 60, script = "khillmarrattack", arguments = {3}, minimum = 120 * 60, to = 300},
     {schedule = random():getInt(50, 70) * 60, script = "spawntravellingmerchant", to = 520},
 }
 
-local pause = 10 * 60
+local pause = 5 * 60
 local pauseTime = pause
 
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.

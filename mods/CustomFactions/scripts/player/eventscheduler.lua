@@ -10,6 +10,7 @@ package.path = package.path .. ";mods/CustomFactions/config/?.lua"
 MoveUIConfig = nil
 exsist, CustomFactionsConfig = pcall(require, 'CustomFactionsConfig')
 
+-- Vanilla events , own events are added in EventSheduler.addCustomWaves();
 local events =
 {
     {schedule = random():getInt(45, 60) * 60, script = "convoidistresssignal", arguments = {true}, to = 560},
@@ -17,13 +18,9 @@ local events =
     {schedule = random():getInt(60, 80) * 60, script = "pirateattackstarter", to = 560},
     {schedule = random():getInt(60, 80) * 60, script = "traderattackedbypiratesstarter", to = 560},
     {schedule = random():getInt(25, 50) * 60, script = "alienattack", arguments = {0}, minimum = 5 * 60, from = 0, to = 500},
-    {schedule = random():getInt(5, 10) * 60, script = "khillmarrattack", arguments = {0}, minimum = 5 * 60, from = 0, to = 500},
     {schedule = random():getInt(35, 70) * 60, script = "alienattack", arguments = {1}, minimum = 25 * 60, to = 500},
-    {schedule = random():getInt(35, 70) * 60, script = "khillmarrattack", arguments = {1}, minimum = 25 * 60, to = 500},
     {schedule = random():getInt(60, 80) * 60, script = "alienattack", arguments = {2}, minimum = 60 * 60, to = 350},
-    {schedule = random():getInt(60, 80) * 60, script = "khillmarrattack", arguments = {2}, minimum = 60 * 60, to = 350},
     {schedule = random():getInt(80, 120) * 60, script = "alienattack", arguments = {3}, minimum = 120 * 60, to = 300},
-    {schedule = random():getInt(80, 120) * 60, script = "khillmarrattack", arguments = {3}, minimum = 120 * 60, to = 300},
     {schedule = random():getInt(50, 70) * 60, script = "spawntravellingmerchant", to = 520},
 }
 
@@ -35,6 +32,9 @@ local pauseTime = pause
 EventScheduler = {}
 
 function EventScheduler.initialize()
+    -- adding custom events to the vanilla ones
+    events = addCustomEvents(events)
+
     for _, event in pairs(events) do
         event.time = (event.minimum or 5 * 60) + math.random() * event.schedule
     end
@@ -45,7 +45,17 @@ function EventScheduler.initialize()
     end
 
     print ("player events roughly every " .. round((1 / frequency + pause) / 60, 2) .. " minutes")
+end
 
+funciton EventSheduler.addCustomEvents(events)
+
+  -- TODO READ FROM CONFIG
+  events.insert({schedule = random():getInt(25, 50) * 60, script = "khillmarrattack", arguments = {0}, minimum = 5 * 60, from = 0, to = 500})
+  events.insert({schedule = random():getInt(35, 70) * 60, script = "khillmarrattack", arguments = {1}, minimum = 25 * 60, to = 500})
+  events.insert({schedule = random():getInt(60, 80) * 60, script = "khillmarrattack", arguments = {2}, minimum = 60 * 60, to = 350})
+  events.insert({schedule = random():getInt(80, 120) * 60, script = "khillmarrattack", arguments = {3}, minimum = 120 * 60, to = 300})
+
+  return events
 end
 
 function EventScheduler.updateServer(timeStep)
