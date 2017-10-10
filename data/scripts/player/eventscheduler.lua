@@ -21,6 +21,16 @@ local events =
 local pause = 5 * 60
 local pauseTime = pause
 
+-- CustomFactions Mod START
+local success, returned = pcall(require, "mods/CustomFactions/scripts/player/extend_eventscheduler.lua")
+if not success then
+  print(returned)
+else
+  events = EventSheduler.addCustomEvents(events)
+  pause = EventSheduler.getCustomPauseTime() * 60
+end
+-- CustomFactions Mod END
+
 -- Don't remove or alter the following comment, it tells the game the namespace this script lives in. If you remove it, the script will break.
 -- namespace EventScheduler
 EventScheduler = {}
@@ -113,4 +123,5 @@ end
 
 end
 
+-- Custom Factions MOD
 if not pcall(require, 'mods.CustomFactions.scripts.player.eventscheduler') then print('Mod: CustomFactions, failed to extend eventschedular.lua!') end
