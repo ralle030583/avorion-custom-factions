@@ -110,15 +110,14 @@ function EventScheduler.restore(times)
     end
 end
 
+  -- CustomFactions Mod START
+  local success, returned = pcall(require, "mods/CustomFactions/scripts/player/eventscheduler.lua")
+  if not success then
+    print(returned)
+  else
+    events = EventSheduler.addCustomEvents(events)
+    pause = EventSheduler.getCustomPauseTime() * 60
+  end
+  -- CustomFactions Mod END
 
 end
-
--- CustomFactions Mod START
-local success, returned = pcall(require, "mods/CustomFactions/scripts/player/eventscheduler.lua")
-if not success then
-  print(returned)
-else
-  events = EventSheduler.addCustomEvents(events)
-  pause = EventSheduler.getCustomPauseTime() * 60
-end
--- CustomFactions Mod END
