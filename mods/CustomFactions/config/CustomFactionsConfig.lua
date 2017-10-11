@@ -15,10 +15,10 @@ CustomFactionsConfig.dependencies = {
     mods = {}
 }
 
--- Pausetime after events in minutes
+-- Pausetime, minimum Time between events
 CustomFactionsConfig.pauseTime = 10
 
--- Shipclasses according to vanilla shiputility
+-- Shipclasses
 CustomFactionsConfig.CLASS.MILITARY.SCOUT = 0
 CustomFactionsConfig.CLASS.MILITARY.SENTINEL = 1
 CustomFactionsConfig.CLASS.MILITARY.HUNTER = 2
@@ -54,8 +54,8 @@ CustomFactionsConfig.ships["ExampleFaction"][CustomFactionsConfig.CLASS.MILITARY
 
 -- Custom events
 -- Currently working events:
---    * customAttack - spawns a wave of ships witch attack a sector
---          arguments = {faction of the attacker, ships of the attacker}
+--    * customAttack - spawns a wave of ships which attack the sector the player is in
+--          arguments = {faction of the attacker, shipclasses of the attacker}
 CustomFactionsConfig.customEvents = {
   {schedule = random():getInt(25, 50) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
     arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
