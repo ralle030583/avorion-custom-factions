@@ -31,7 +31,7 @@ CustomFactionsConfig.CLASS.CIVIL.TRADER = 8
 CustomFactionsConfig.CLASS.CIVIL.MERCHANT = 9
 CustomFactionsConfig.CLASS.CIVIL.SALESMAN = 10
 
--- Factions
+-- List of Factions witch will added to the game
 CustomFactionsConfig.factions = {"Khillmarr", "ExampleFaction"}
 
 -- Ships per Factions
@@ -52,7 +52,10 @@ CustomFactionsConfig.ships["ExampleFaction"][CustomFactionsConfig.CLASS.MILITARY
       {title = "Example Frigatte C" , plan = "mods/CustomFactions/plans/khillmarr/KhillmarrDaggerCorvette_1.xml", scale = 1.0}
   }
 
--- Custom events, currently only attacks with Faction and then shipcompositon
+-- Custom events
+-- Currently working events:
+--    * customAttack - spawns a wave of ships witch attack a sector
+--          arguments = {faction of the attacker, ships of the attacker}
 CustomFactionsConfig.customEvents = {
   {schedule = random():getInt(25, 50) * 60, script = "mods/CustomFactions/scripts/player/customAttack",
     arguments = {"Khillmarr", {CustomFactionsConfig.CLASS.MILITARY.SENTINEL,
